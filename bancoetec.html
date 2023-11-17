@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Operações Bancárias</title>
+</head>
+<body>
+
+<script>
+    let cpf = [];
+    let nome = [];
+    let saldo = [];
+    let n = 0;
+
+    cpf[0] = 123;
+    nome[0] = 'Matheus';
+    saldo[0] = 502;
+
+    function iniciarOperacoes() {
+        let inicio = Number(prompt("Escolha a operação: \n 1 - Cadastrar conta \n 2 - Fazer o Pix \n 3 - Sair"));
+
+        while (inicio === 1 || inicio === 2) {
+            switch (inicio) {
+                case 1:
+                    cadastrarConta();
+                    break;
+                case 2:
+                    fazerPix();
+                    break;
+                case 3:
+                    alert("Encerrando o programa.");
+                    return; 
+                    alert("Escolha uma opção válida.");
+                    break;
+            }
+            inicio = Number(prompt("Escolha a operação: \n 1 - Cadastrar conta \n 2 - Fazer o Pix \n 3 - Sair"));
+        }
+    }
+
+    function cadastrarConta() {
+        n++;
+        let cpf1 = Number(prompt("Digite o cpf"));
+        let nome1 = prompt("Digite o nome");
+        let saldo1 = Number(prompt("Digite o saldo"));
+
+        cpf[n] = cpf1;
+        nome[n] = nome1;
+        saldo[n] = saldo1;
+
+        alert("Conta cadastrada:\nCpf:" + cpf[n] + "\nCliente: " + nome[n] + "\nSaldo: " + saldo[n]);
+    }
+
+    function fazerPix() {
+        let cpfA = Number(prompt("Digite o cpf de origem"));
+        let valor = Number(prompt("Digite o valor"));
+        let cpfB = Number(prompt("Digite o cpf de destino"));
+
+       
+        let index = cpf.indexOf(cpfA);
+        if (index !== -1) {
+            if (saldo[index] >= valor) {
+                saldo[index] -= valor;
+                alert("Pix realizado com sucesso!");
+            } else {
+                alert("Você não tem saldo suficiente.");
+            }
+        } else {
+            alert("Conta de origem não encontrada.");
+        }
+    }
+
+     
+    iniciarOperacoes();
+</script>
+
+</body>
+</html>
